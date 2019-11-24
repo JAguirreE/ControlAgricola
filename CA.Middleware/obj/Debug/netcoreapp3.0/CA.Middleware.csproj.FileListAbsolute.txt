@@ -1,0 +1,5 @@
+C:\Source\ControlAgricola\CA.Middleware\bin\Debug\netcoreapp3.0\CA.Middleware.deps.json
+C:\Source\ControlAgricola\CA.Middleware\bin\Debug\netcoreapp3.0\CA.Middleware.dll
+C:\Source\ControlAgricola\CA.Middleware\obj\Debug\netcoreapp3.0\CA.Middleware.csprojAssemblyReference.cache
+C:\Source\ControlAgricola\CA.Middleware\obj\Debug\netcoreapp3.0\CA.Middleware.AssemblyInfoInputs.cache
+C:\Source\ControlAgricola\CA.Middleware\obj\Debug\netcoreapp3.0\CA.Middleware.AssemblyInfo.cs
