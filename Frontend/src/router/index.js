@@ -1,51 +1,69 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Dashboard from '@/components/Dashboard'
-import Profile from '@/components/Profile'
-import Tables from '@/components/Tables'
-import Maps from '@/components/Maps'
-import BadGateway from '@/components/BadGateway'
+import Vue from "vue";
+import Router from "vue-router";
+import Dashboard from "@/components/Dashboard";
+import Profile from "@/components/Profile";
+import Tables from "@/components/Tables";
+import Maps from "@/components/Maps";
+import BadGateway from "@/components/BadGateway";
+import Finca from "@/components/Finca";
+import Lote from "@/components/Lote";
+import Usuario from "@/components/Usuario";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
-      path: '/dashboard',
-      name: 'Dashboard',
+      path: "/dashboard",
+      name: "Dashboard",
       component: Dashboard,
       props: { page: 1 },
-      alias: '/'
+      alias: "/"
     },
     {
-      path: '/profile',
-      name: 'Profile',
+      path: "/actividades",
+      name: "Actividades",
       props: { page: 2 },
       component: Profile
     },
     {
-      path: '/tables',
-      name: 'Tables',
+      path: "/reportes",
+      name: "Reportes",
       props: { page: 3 },
       component: Tables
     },
     {
-      path: '/maps',
-      name: 'Maps',
+      path: "/configuracion",
+      name: "Configuración",
       props: { page: 4 },
       component: Maps
     },
     {
-      path: '/404',
-      name: 'BadGateway',
+      path: "finca",
+      name: "Finca",
+      component: Finca,
+    },
+    {
+      path: "lote",
+      name: "Lote",
+      component: Lote,
+    },
+    {
+      path: "usuario",
+      name: "Usuario",
+      component: Usuario,
+    },
+    {
+      path: "/404",
+      name: "BadGateway",
       props: { page: 5 },
       component: BadGateway
     },
     {
-      path: '*',
+      path: "*",
       props: { page: 5 },
-      redirect: '/404'
+      redirect: "/404"
     }
   ]
-})
+});

@@ -2,7 +2,9 @@
   <div class="flexible-content">
     <!--Navbar-->
     <mdb-navbar class="flexible-navbar white" light position="top" scrolling>
-      <mdb-navbar-brand href="https://mdbootstrap.com/docs/vue/" target="_blank">AGC</mdb-navbar-brand>
+      <mdb-navbar-brand href="https://mdbootstrap.com/docs/vue/" target="_blank"
+        >Control Agricola</mdb-navbar-brand
+      >
       <mdb-navbar-toggler>
         <mdb-navbar-nav right>
           <mdb-nav-item
@@ -10,8 +12,7 @@
             waves-fixed
             class="border border-light rounded mr-1"
             target="_blank"
-          >
-            <mdb-icon fab icon="github" class="mr-2" />JA GitHub
+            ><mdb-icon fab icon="github" class="mr-2" />Julian Aguirre GitHub
           </mdb-nav-item>
         </mdb-navbar-nav>
       </mdb-navbar-toggler>
@@ -19,29 +20,46 @@
     <!--/.Navbar-->
     <!-- Sidebar -->
     <div class="sidebar-fixed position-fixed">
-      <a class="logo-wrapper">
-        <img alt class="img-fluid" src="./assets/logo-mdb-vue-small.png" />
-      </a>
+      <a class="logo-wrapper"
+        ><img alt="" class="img-fluid" src="./assets/logo-mdb-vue-small.png"
+      /></a>
       <mdb-list-group class="list-group-flush">
         <router-link to="/dashboard" @click.native="activeItem = 1">
-          <mdb-list-group-item :action="true" :class="activeItem === 1 && 'active'">
-            <mdb-icon icon="chart-pie" class="mr-3" />Inicio
-          </mdb-list-group-item>
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 1 && 'active'"
+            ><mdb-icon icon="home" class="mr-3" />Inicio</mdb-list-group-item
+          >
         </router-link>
-        <router-link to="/profile" @click.native="activeItem = 2">
-          <mdb-list-group-item :action="true" :class="activeItem === 2 && 'active'">
-            <mdb-icon icon="calendar-check" class="mr-3" />Registrar Actividad
-          </mdb-list-group-item>
+        <router-link to="/actividades" @click.native="activeItem = 2">
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 2 && 'active'"
+            ><mdb-icon
+              icon="clipboard-check"
+              class="mr-3"
+            />Actividades</mdb-list-group-item
+          >
         </router-link>
-        <router-link to="/tables" @click.native="activeItem = 3">
-          <mdb-list-group-item :action="true" :class="activeItem === 3 && 'active'">
-            <mdb-icon icon="clipboard-list" class="mr-3" />Reportes
-          </mdb-list-group-item>
+        <router-link to="/reportes" @click.native="activeItem = 3">
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 3 && 'active'"
+            ><mdb-icon
+              icon="chart-pie"
+              class="mr-3"
+            />Reportes</mdb-list-group-item
+          >
         </router-link>
-        <router-link to="/maps" @click.native="activeItem = 4">
-          <mdb-list-group-item :action="true" :class="activeItem === 4 && 'active'">
-            <mdb-icon icon="cogs" class="mr-3" />Configuración
-          </mdb-list-group-item>
+        <router-link to="/configuracion" @click.native="activeItem = 4">
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 4 && 'active'"
+            ><mdb-icon
+              icon="cogs"
+              class="mr-3"
+            />Configuración</mdb-list-group-item
+          >
         </router-link>
       </mdb-list-group>
     </div>
@@ -52,37 +70,9 @@
       </div>
       <ftr color="primary-color-dark" class="text-center font-small darken-2">
         <hr class="my4" />
-        <div class="pb-4">
-          <a href="#">
-            <mdb-icon fab icon="facebook-square" class="mr-3" />
-          </a>
-          <a href="#">
-            <mdb-icon fab icon="twitter" class="mr-3" />
-          </a>
-          <a href="#">
-            <mdb-icon fab icon="youtube" class="mr-3" />
-          </a>
-          <a href="#">
-            <mdb-icon fab icon="google-plus" class="mr-3" />
-          </a>
-          <a href="#">
-            <mdb-icon fab icon="dribbble" class="mr-3" />
-          </a>
-          <a href="#">
-            <mdb-icon fab icon="pinterest" class="mr-3" />
-          </a>
-          <a href="#">
-            <mdb-icon fab icon="github" class="mr-3" />
-          </a>
-          <a href="#">
-            <mdb-icon fab icon="codepen" class="mr-3" />
-          </a>
-        </div>
         <p class="footer-copyright mb-0 py-3 text-center">
-          &copy; {{new Date().getFullYear()}} Copyright:
-          <a
-            href="https://mdbootstrap.com/docs/vue/"
-          >MDBootstrap.com</a>
+          &copy; {{ new Date().getFullYear() }} Template Copyright:
+          <a href="https://mdbootstrap.com/docs/vue/"> MDBootstrap.com </a>
         </p>
       </ftr>
     </main>

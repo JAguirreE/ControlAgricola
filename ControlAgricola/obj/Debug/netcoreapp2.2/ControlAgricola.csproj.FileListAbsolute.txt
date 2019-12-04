@@ -1,0 +1,16 @@
+C:\Source\ControlAgricola\ControlAgricola\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Source\ControlAgricola\ControlAgricola\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Source\ControlAgricola\ControlAgricola\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\Source\ControlAgricola\ControlAgricola\bin\Debug\netcoreapp2.2\ControlAgricola.deps.json
+C:\Source\ControlAgricola\ControlAgricola\bin\Debug\netcoreapp2.2\ControlAgricola.runtimeconfig.json
+C:\Source\ControlAgricola\ControlAgricola\bin\Debug\netcoreapp2.2\ControlAgricola.runtimeconfig.dev.json
+C:\Source\ControlAgricola\ControlAgricola\bin\Debug\netcoreapp2.2\ControlAgricola.dll
+C:\Source\ControlAgricola\ControlAgricola\bin\Debug\netcoreapp2.2\ControlAgricola.pdb
+C:\Source\ControlAgricola\ControlAgricola\obj\Debug\netcoreapp2.2\ControlAgricola.csprojAssemblyReference.cache
+C:\Source\ControlAgricola\ControlAgricola\obj\Debug\netcoreapp2.2\ControlAgricola.RazorAssemblyInfo.cache
+C:\Source\ControlAgricola\ControlAgricola\obj\Debug\netcoreapp2.2\ControlAgricola.RazorAssemblyInfo.cs
+C:\Source\ControlAgricola\ControlAgricola\obj\Debug\netcoreapp2.2\ControlAgricola.AssemblyInfoInputs.cache
+C:\Source\ControlAgricola\ControlAgricola\obj\Debug\netcoreapp2.2\ControlAgricola.AssemblyInfo.cs
+C:\Source\ControlAgricola\ControlAgricola\obj\Debug\netcoreapp2.2\ControlAgricola.RazorTargetAssemblyInfo.cache
+C:\Source\ControlAgricola\ControlAgricola\obj\Debug\netcoreapp2.2\ControlAgricola.dll
+C:\Source\ControlAgricola\ControlAgricola\obj\Debug\netcoreapp2.2\ControlAgricola.pdb

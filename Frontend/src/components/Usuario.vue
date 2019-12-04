@@ -1,13 +1,13 @@
 <template>
-  <section id="profile">
+  <section id="usuario">
     <mdb-row>
       <div class="col-md-6 mb-md-0 mb-4">
         <h2 class="secondary-heading mb-3">
-          Registrar Actividad
+          Registrar Usuario
         </h2>
 
         <p>
-          Ingrese los datos solicitados para registrar una actividad en el lote
+          Ingrese los datos solicitados para registrar un usuario
         </p>
 
         <section class="section-preview">
@@ -57,7 +57,7 @@ import {
 import { Services } from "../index";
 
 export default {
-  name: "Profile",
+  name: "Usuario",
   components: {
     mdbRow,
     mdbCol,
