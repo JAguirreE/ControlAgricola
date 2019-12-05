@@ -123,6 +123,13 @@ namespace ControlAgricola.Controllers
       return doactividades.GetActividades();
     }
 
+    [Route("GetActividadesCosecha")]
+    [HttpGet]
+    public List<ActividadDatos> GetActividadesCosecha(int idLote)
+    {
+      return doactividades.GetActividadesCosecha(idLote);
+    }
+
 
     #endregion
 

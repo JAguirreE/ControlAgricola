@@ -21,7 +21,7 @@ namespace ControlAgricola.Domain
 
     public List<TipoActividad> GetTiposActividad()
     {
-      using(controlagricolaContext context = new controlagricolaContext())
+      using (controlagricolaContext context = new controlagricolaContext())
       {
         List<TipoActividad> tiposActividad = context.TipoActividad.ToList();
 
@@ -90,6 +90,50 @@ namespace ControlAgricola.Domain
               NombreUsuario = usu.Nombre,
               NombreProducto = pro.Nombre,
               NombreTipoActividad = tip.Nombre,
+              IdLote = act.IdLote,
+              IdTipoActividad = act.IdTipoActividad
+            }
+          )
+          .OrderBy(o => o.IdLote)
+          .ThenBy(t => t.Fecha)
+          .ToList();
+
+        return actividades;
+      }
+    }
+
+    public List<ActividadDatos> GetActividadesCosecha(int idLote)
+    {
+      using (controlagricolaContext context = new controlagricolaContext())
+      {
+        List<ActividadDatos> actividades =
+          (
+            from act in context.Actividad
+            join lot in context.Lote
+              on act.IdLote equals lot.IdLote
+            join fin in context.Finca
+              on lot.IdFinca equals fin.IdFinca
+            join tip in context.TipoActividad
+              on act.IdTipoActividad equals tip.IdTipo
+            join pro in context.ProductoPermitido
+              on act.IdProducto equals pro.IdProducto
+            join usu in context.Usuario
+              on act.IdUsuario equals usu.IdUsuario
+            where act.IdLote == idLote
+            select new ActividadDatos
+            {
+              IdActividad = act.IdActividad,
+              Cantidad = act.Cantidad,
+              MetodoAplicacion = act.MetodoAplicacion,
+              Meteorologia = act.Meteorologia,
+              Fecha = act.Fecha,
+              NombreLote = lot.Nombre,
+              NombreFinca = fin.Nombre,
+              NombreUsuario = usu.Nombre,
+              NombreProducto = pro.Nombre,
+              NombreTipoActividad = tip.Nombre,
+              IdLote = act.IdLote,
+              IdTipoActividad = act.IdTipoActividad
             }
           )
           .OrderBy(o => o.IdLote)

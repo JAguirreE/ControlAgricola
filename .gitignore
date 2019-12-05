@@ -3,3 +3,12 @@
 ################################################################################
 
 /.vs/ControlAgricola/v16/Server/sqlite3
+.vs/ControlAgricola/DesignTimeBuild/.dtbcache
+.vs/ControlAgricola/v16/.suo
+/bin/
+/obj/
+ControlAgricola/bin/Debug/netcoreapp2.2/ControlAgricola.dll
+ControlAgricola/bin/Debug/netcoreapp2.2/ControlAgricola.pdb
+ControlAgricola/obj/Debug/netcoreapp2.2/ControlAgricola.csprojAssemblyReference.cache
+ControlAgricola/obj/Debug/netcoreapp2.2/ControlAgricola.dll
+ControlAgricola/obj/Debug/netcoreapp2.2/ControlAgricola.pdb

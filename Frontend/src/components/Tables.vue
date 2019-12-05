@@ -7,12 +7,16 @@
             <h4 class="h4-responsive text-white">Reporte General</h4>
           </mdb-view>
           <mdb-card-body>
-
             <h3 class="mt-5 text-left"><strong>Fincas Registradas</strong></h3>
-            <p> </p>
+            <p></p>
             <mdb-tbl>
               <thead class="mdb-color darken-3">
-                <tr class="text-white"><th>#</th><th>Nombre</th><th>Dirección</th><th>Tamaño</th></tr>
+                <tr class="text-white">
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Dirección</th>
+                  <th>Tamaño</th>
+                </tr>
               </thead>
               <tbody>
                 <tr v-for="finca in fincas" :key="finca.idFinca">
@@ -25,10 +29,15 @@
             </mdb-tbl>
 
             <h3 class="mt-5 text-left"><strong>Lotes Registrados</strong></h3>
-            <p> </p>
+            <p></p>
             <mdb-tbl>
               <thead class="mdb-color darken-3">
-                <tr class="text-white"><th>#</th><th>Nombre</th><th>Tamaño</th><th>Finca</th></tr>
+                <tr class="text-white">
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Tamaño</th>
+                  <th>Finca</th>
+                </tr>
               </thead>
               <tbody>
                 <tr v-for="lote in lotes" :key="lote.idLote">
@@ -40,8 +49,10 @@
               </tbody>
             </mdb-tbl>
 
-            <h3 class="mt-5 text-left"><strong>Actividades Registradas</strong></h3>
-            <p> </p>
+            <h3 class="mt-5 text-left">
+              <strong>Actividades Registradas</strong>
+            </h3>
+            <p></p>
             <mdb-tbl>
               <thead class="mdb-color darken-3">
                 <tr class="text-white">
@@ -55,10 +66,14 @@
                   <th>Lote</th>
                   <th>Finca</th>
                   <th>Fecha</th>
+                  <th>QR</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="actividad in actividades" :key="actividad.idActividad">
+                <tr
+                  v-for="actividad in actividades"
+                  :key="actividad.idActividad"
+                >
                   <td>{{ actividad.idActividad }}</td>
                   <td>{{ actividad.nombreTipoActividad }}</td>
                   <td>{{ actividad.nombreProducto }}</td>
@@ -69,11 +84,39 @@
                   <td>{{ actividad.nombreLote }}</td>
                   <td>{{ actividad.nombreFinca }}</td>
                   <td>{{ actividad.fecha }}</td>
+                  <td>
+                    <mdb-btn
+                       v-if="actividad.idTipoActividad == 5"
+                      color="primary"
+                      @click="verQR(actividad.idLote)"
+                      >Ver</mdb-btn
+                    >
+                  </td>
                 </tr>
               </tbody>
             </mdb-tbl>
-            
           </mdb-card-body>
+
+          <div>
+            <mdb-modal :show="modal" @close="modal = false">
+              <mdb-modal-header>
+                <mdb-modal-title>QR</mdb-modal-title>
+              </mdb-modal-header>
+              <mdb-modal-body>
+                <qrcode-vue
+                class="text-center"
+                  :value="idLoteSel"
+                  :size="200"
+                  :level="'L'"
+                ></qrcode-vue>
+              </mdb-modal-body>
+              <mdb-modal-footer>
+                <mdb-btn color="secondary" @click.native="modal = false"
+                  >Close</mdb-btn
+                >
+              </mdb-modal-footer>
+            </mdb-modal>
+          </div>
         </mdb-card>
       </mdb-col>
     </mdb-row>
@@ -81,25 +124,50 @@
 </template>
 
 <script>
-import { mdbRow, mdbCol, mdbCard, mdbView, mdbCardBody, mdbTbl } from 'mdbvue'
-import { Services } from "../index";
+import {
+  mdbRow,
+  mdbCol,
+  mdbCard,
+  mdbView,
+  mdbCardBody,
+  mdbTbl,
+  mdbModal,
+  mdbModalHeader,
+  mdbModalTitle,
+  mdbModalBody,
+  mdbModalFooter,
+  mdbBtn
+} from "mdbvue";
+import { Services, Modal } from "../index";
+import QrcodeVue from "qrcode.vue";
 
 export default {
-  name: 'Tables',
+  name: "Tables",
   components: {
     mdbRow,
     mdbCol,
     mdbCard,
     mdbView,
     mdbCardBody,
-    mdbTbl
+    mdbTbl,
+    Modal,
+    mdbModal,
+    mdbModalHeader,
+    mdbModalTitle,
+    mdbModalBody,
+    mdbModalFooter,
+    mdbBtn,
+    QrcodeVue
   },
-  data () {
+  data() {
     return {
       fincas: [],
       lotes: [],
       actividades: [],
-    }
+      verModal: false,
+      modal: false,
+      idLoteSel: null
+    };
   },
   methods: {
     getFincas() {
@@ -126,10 +194,17 @@ export default {
       Services.get("General/GetActividades")
         .then(res => {
           this.actividades = res;
+          console.log(res);
         })
         .catch(err => {
           console.log(err);
         });
+    },
+
+    verQR(idLote) {
+      debugger;
+      this.idLoteSel = idLote.toString();
+      this.modal = true;
     }
   },
   mounted() {
@@ -137,7 +212,7 @@ export default {
     this.getLotes();
     this.getActividades();
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
