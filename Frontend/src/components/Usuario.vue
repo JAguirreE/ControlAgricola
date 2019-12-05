@@ -10,27 +10,41 @@
           Ingrese los datos solicitados para registrar un usuario
         </p>
 
-        <section class="section-preview">
-          <div class="input-group mb-3">
+        <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">@</span>
+              <span class="input-group-text" id="basic-addon1">Nombre</span>
             </div>
-            <select>
-              <option />
-              <option
-                v-for="tipoActividad in tiposActividad"
-                :key="tipoActividad.idTipoActividad"
-                :value="tipoActividad.idTipoActividad"
-              >{{ tipoActividad.idTipoActividad }}</option>
-            </select>
             <input
               type="text"
               class="form-control"
-              placeholder="Username"
-              v-model="actividad.idTipoActividad"
+              v-model="objUsuario.nombre"
             />
           </div>
-        </section>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Documento</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              v-model="objUsuario.documento"
+            />
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Rol</span>
+            </div>
+            <select v-model="objUsuario.idRol" class="browser-default custom-select">
+              <option></option>
+              <option v-for="rol in roles" :key="rol.idRol" :value="rol.idRol">{{ rol.nombre }}</option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+            <mdb-btn color="primary" @click="guardar">Guardar</mdb-btn>
+          </div>
       </div>
     </mdb-row>
   </section>
@@ -54,7 +68,7 @@ import {
   mdbPageItem
 } from "mdbvue";
 
-import { Services } from "../index";
+import { Services, Notifications } from "../index";
 
 export default {
   name: "Usuario",
@@ -76,11 +90,31 @@ export default {
   },
   data() {
     return {
-      actividad: {}
+      objUsuario: {},
+      roles: []
     };
   },
+  methods: {
+    guardar() {
+      Services.post("General/RegistrarUsuario", this.objUsuario)
+      .then(res => {
+        Notifications.success('Registro exitoso');
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    },
+
+    
+  },
   created() {
-    Services.get("General/GetTiposActividad");
+    Services.get("General/GetRoles")
+    .then(res => {
+      this.roles = res;
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 };
 </script>

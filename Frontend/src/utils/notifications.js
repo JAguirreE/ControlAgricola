@@ -2,11 +2,10 @@ import Swal from "sweetalert2"
 
 export class Notifications {
 
-  static success (text, type) {
+  static success (text) {
     Swal.fire({
       title: 'Info',
       text: text,
-      type: type,
       icon: 'success',
       allowOutsideClick: true,
       confirmButtonText: "Ok"

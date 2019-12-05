@@ -1,5 +1,5 @@
 <template>
-  <section id="lote">
+  <section id="finca">
     <mdb-row>
       <div class="col-md-6 mb-md-0 mb-4">
         <h2 class="secondary-heading mb-3">
@@ -10,27 +10,42 @@
           Ingrese los datos solicitados para registrar un lote
         </p>
 
-        <section class="section-preview">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">@</span>
+              <span class="input-group-text" id="basic-addon1">Nombre</span>
             </div>
-            <select>
-              <option />
-              <option
-                v-for="tipoActividad in tiposActividad"
-                :key="tipoActividad.idTipoActividad"
-                :value="tipoActividad.idTipoActividad"
-              >{{ tipoActividad.idTipoActividad }}</option>
-            </select>
             <input
               type="text"
               class="form-control"
-              placeholder="Username"
-              v-model="actividad.idTipoActividad"
+              v-model="objLote.nombre"
             />
           </div>
-        </section>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Tamaño</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ej: 10 m"
+              v-model="objLote.tamano"
+            />
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Finca</span>
+            </div>
+            <select v-model="objLote.idFinca" class="browser-default custom-select">
+              <option></option>
+              <option v-for="finca in fincas" :key="finca.idFinca" :value="finca.idFinca">{{ finca.nombre}}</option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+            <mdb-btn color="primary" @click="guardar">Guardar</mdb-btn>
+          </div>
       </div>
     </mdb-row>
   </section>
@@ -51,10 +66,10 @@ import {
   mdbBtn,
   mdbPagination,
   mdbPageNav,
-  mdbPageItem
+  mdbPageItem, 
 } from "mdbvue";
 
-import { Services } from "../index";
+import { Services, Notifications } from "../index";
 
 export default {
   name: "Lote",
@@ -76,12 +91,33 @@ export default {
   },
   data() {
     return {
-      actividad: {}
+      objLote: {},
+      fincas: []
     };
   },
+  methods: {
+    guardar() {
+      Services.post("General/RegistrarLote", this.objLote)
+      .then(res => {
+        Notifications.success('Registro exitoso');
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    },
+
+    
+  },
   created() {
-    Services.get("General/GetTiposActividad");
+    Services.get("General/GetFincas")
+    .then(res => {
+      this.fincas = res;
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
+  
 };
 </script>
 

@@ -4,45 +4,75 @@
       <mdb-col md="12">
         <mdb-card cascade narrow class="mt-5">
           <mdb-view class="gradient-card-header blue darken-2">
-            <h4 class="h4-responsive text-white">Basic tables</h4>
+            <h4 class="h4-responsive text-white">Reporte General</h4>
           </mdb-view>
           <mdb-card-body>
-            <h3 class="mt-5 text-left"><strong>Basic examples</strong></h3>
-            <p>Using the most basic table markup, here’s how .table-based tables look in Bootstrap. All table styles are inherited in Bootstrap 4, meaning any nested tables will be styled in the same manner as the parent.</p>
-            <mdb-tbl>
-              <thead>
-                <tr><th>#</th><th>First Name</th><th>Last Name</th><th>Username</th></tr>
-              </thead><tbody>
-                <tr><th scope="row">1</th><td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr><th scope="row">2</th><td>Jacob</td><td>Thornton</td><td>@fat</td></tr><tr><th scope="row">3</th><td>Larry</td><td>the Bird</td><td>@twitter</td></tr>
-              </tbody>
-            </mdb-tbl>
-            <h3 class="mt-5 text-left"><strong>Table head options</strong></h3>
-            <p>To change a background-color of thead (or any other element) use our color classes. If you are going to use a dark background you should also consider white text (to provide a proper contrast) by adding .text-white class. </p>
-            <mdb-tbl>
-              <thead class="blue-grey lighten-4">
-                <tr><th>#</th><th>First Name</th><th>Last Name</th><th>Username</th></tr>
-              </thead>
-              <tbody>
-                <tr><th scope="row">1</th><td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr><th scope="row">2</th><td>Jacob</td><td>Thornton</td><td>@fat</td></tr><tr><th scope="row">3</th><td>Larry</td><td>the Bird</td><td>@twitter</td></tr>
-              </tbody>
-            </mdb-tbl>
+
+            <h3 class="mt-5 text-left"><strong>Fincas Registradas</strong></h3>
+            <p> </p>
             <mdb-tbl>
               <thead class="mdb-color darken-3">
-                <tr class="text-white"><th>#</th><th>First Name</th><th>Last Name</th><th>Username</th></tr>
+                <tr class="text-white"><th>#</th><th>Nombre</th><th>Dirección</th><th>Tamaño</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">1</th><td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr><th scope="row">2</th><td>Jacob</td><td>Thornton</td><td>@fat</td></tr><tr><th scope="row">3</th><td>Larry</td><td>the Bird</td><td>@twitter</td></tr>
+                <tr v-for="finca in fincas" :key="finca.idFinca">
+                  <td>{{ finca.idFinca }}</td>
+                  <td>{{ finca.nombre }}</td>
+                  <td>{{ finca.direccion }}</td>
+                  <td>{{ finca.tamano }}</td>
+                </tr>
               </tbody>
             </mdb-tbl>
-            <h3 class="mt-5 text-left"><strong>Striped rows:</strong></h3>
-            <table class="table table-striped">
-              <thead>
-                <tr><th>#</th><th>First Name</th><th>Last Name</th><th>Username</th></tr>
+
+            <h3 class="mt-5 text-left"><strong>Lotes Registrados</strong></h3>
+            <p> </p>
+            <mdb-tbl>
+              <thead class="mdb-color darken-3">
+                <tr class="text-white"><th>#</th><th>Nombre</th><th>Tamaño</th><th>Finca</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">1</th><td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr><th scope="row">2</th><td>Jacob</td><td>Thornton</td><td>@fat</td></tr><tr><th scope="row">3</th><td>Larry</td><td>the Bird</td><td>@twitter</td></tr>
+                <tr v-for="lote in lotes" :key="lote.idLote">
+                  <td>{{ lote.idLote }}</td>
+                  <td>{{ lote.nombre }}</td>
+                  <td>{{ lote.tamano }}</td>
+                  <td>{{ lote.finca }}</td>
+                </tr>
               </tbody>
-            </table>
+            </mdb-tbl>
+
+            <h3 class="mt-5 text-left"><strong>Actividades Registradas</strong></h3>
+            <p> </p>
+            <mdb-tbl>
+              <thead class="mdb-color darken-3">
+                <tr class="text-white">
+                  <th>#</th>
+                  <th>Tipo Actividad</th>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                  <th>Método</th>
+                  <th>Meteorología</th>
+                  <th>Agricultor</th>
+                  <th>Lote</th>
+                  <th>Finca</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="actividad in actividades" :key="actividad.idActividad">
+                  <td>{{ actividad.idActividad }}</td>
+                  <td>{{ actividad.nombreTipoActividad }}</td>
+                  <td>{{ actividad.nombreProducto }}</td>
+                  <td>{{ actividad.cantidad }}</td>
+                  <td>{{ actividad.metodoAplicacion }}</td>
+                  <td>{{ actividad.meteorologia }}</td>
+                  <td>{{ actividad.nombreUsuario }}</td>
+                  <td>{{ actividad.nombreLote }}</td>
+                  <td>{{ actividad.nombreFinca }}</td>
+                  <td>{{ actividad.fecha }}</td>
+                </tr>
+              </tbody>
+            </mdb-tbl>
+            
           </mdb-card-body>
         </mdb-card>
       </mdb-col>
@@ -52,6 +82,7 @@
 
 <script>
 import { mdbRow, mdbCol, mdbCard, mdbView, mdbCardBody, mdbTbl } from 'mdbvue'
+import { Services } from "../index";
 
 export default {
   name: 'Tables',
@@ -64,7 +95,47 @@ export default {
     mdbTbl
   },
   data () {
-    return {}
+    return {
+      fincas: [],
+      lotes: [],
+      actividades: [],
+    }
+  },
+  methods: {
+    getFincas() {
+      Services.get("General/GetFincas")
+        .then(res => {
+          this.fincas = res;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+
+    getLotes() {
+      Services.get("General/GetLotesDatos")
+        .then(res => {
+          this.lotes = res;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+
+    getActividades() {
+      Services.get("General/GetActividades")
+        .then(res => {
+          this.actividades = res;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
+  mounted() {
+    this.getFincas();
+    this.getLotes();
+    this.getActividades();
   }
 }
 </script>

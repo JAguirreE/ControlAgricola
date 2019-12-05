@@ -99,8 +99,7 @@ export default {
     guardar() {
       Services.post("General/RegistrarFinca", this.objFinca)
       .then(res => {
-        console.log('Respuesta', res);
-        Notifications.success('Registro exitoso', 'success');
+        Notifications.success('Registro exitoso');
       })
       .catch(err => {
         console.log(err);
