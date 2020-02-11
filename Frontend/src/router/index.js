@@ -8,6 +8,8 @@ import BadGateway from "@/components/BadGateway";
 import Finca from "@/components/Finca";
 import Lote from "@/components/Lote";
 import Usuario from "@/components/Usuario";
+import Facturacion from "@/components/Facturacion/Facturacion";
+import FacturacionDetalle from "@/components/Facturacion/FacturacionDetalle";
 
 Vue.use(Router);
 
@@ -42,17 +44,27 @@ export default new Router({
     {
       path: "finca",
       name: "Finca",
-      component: Finca,
+      component: Finca
     },
     {
       path: "lote",
       name: "Lote",
-      component: Lote,
+      component: Lote
     },
     {
       path: "usuario",
       name: "Usuario",
-      component: Usuario,
+      component: Usuario
+    },
+    {
+      path: "/facturacion",
+      name: "Facturacion",
+      component: Facturacion
+    },
+    {
+      path: "/facturacionDetalle",
+      name: "FacturacionDetalle",
+      component: FacturacionDetalle
     },
     {
       path: "/404",

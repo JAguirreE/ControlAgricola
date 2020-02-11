@@ -17,6 +17,8 @@ namespace ControlAgricola.Middleware.Entities
 
         public virtual DbSet<Actividad> Actividad { get; set; }
         public virtual DbSet<CategoriaProducto> CategoriaProducto { get; set; }
+        public virtual DbSet<Factura> Factura { get; set; }
+        public virtual DbSet<FacturaDetalle> FacturaDetalle { get; set; }
         public virtual DbSet<Finca> Finca { get; set; }
         public virtual DbSet<Lote> Lote { get; set; }
         public virtual DbSet<Permiso> Permiso { get; set; }
@@ -156,6 +158,102 @@ namespace ControlAgricola.Middleware.Entities
                     .HasColumnName("nombre")
                     .HasMaxLength(255)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Factura>(entity =>
+            {
+                entity.HasKey(e => e.IdFac);
+
+                entity.ToTable("factura", "controlagricola");
+
+                entity.Property(e => e.IdFac)
+                    .HasColumnName("id_fac")
+                    .HasColumnType("bigint(20)");
+
+                entity.Property(e => e.Emisor)
+                    .IsRequired()
+                    .HasColumnName("emisor")
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Estado)
+                    .IsRequired()
+                    .HasColumnName("estado")
+                    .HasColumnType("char(3)");
+
+                entity.Property(e => e.Fecha).HasColumnName("fecha");
+
+                entity.Property(e => e.Numero)
+                    .IsRequired()
+                    .HasColumnName("numero")
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Receptor)
+                    .IsRequired()
+                    .HasColumnName("receptor")
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ValorBase)
+                    .HasColumnName("valor_base")
+                    .HasColumnType("decimal(10,0)");
+
+                entity.Property(e => e.ValorImpuestos)
+                    .HasColumnName("valor_impuestos")
+                    .HasColumnType("decimal(10,0)");
+
+                entity.Property(e => e.ValorTotal)
+                    .HasColumnName("valor_total")
+                    .HasColumnType("decimal(10,0)");
+            });
+
+            modelBuilder.Entity<FacturaDetalle>(entity =>
+            {
+                entity.HasKey(e => e.IdDetFac);
+
+                entity.ToTable("factura_detalle", "controlagricola");
+
+                entity.HasIndex(e => e.IdFac)
+                    .HasName("FK_factura_detalle_id_fac");
+
+                entity.Property(e => e.IdDetFac)
+                    .HasColumnName("id_det_fac")
+                    .HasColumnType("bigint(20)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Cantidad)
+                    .HasColumnName("cantidad")
+                    .HasColumnType("decimal(10,0)");
+
+                entity.Property(e => e.Concepto)
+                    .IsRequired()
+                    .HasColumnName("concepto")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Estado)
+                    .IsRequired()
+                    .HasColumnName("estado")
+                    .HasColumnType("char(3)");
+
+                entity.Property(e => e.IdFac)
+                    .HasColumnName("id_fac")
+                    .HasColumnType("bigint(20)");
+
+                entity.Property(e => e.Subtotal)
+                    .HasColumnName("subtotal")
+                    .HasColumnType("decimal(10,0)");
+
+                entity.Property(e => e.ValorUnidad)
+                    .HasColumnName("valor_unidad")
+                    .HasColumnType("decimal(10,0)");
+
+                entity.HasOne(d => d.IdFacNavigation)
+                    .WithMany(p => p.FacturaDetalle)
+                    .HasForeignKey(d => d.IdFac)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_factura_detalle_id_fac");
             });
 
             modelBuilder.Entity<Finca>(entity =>

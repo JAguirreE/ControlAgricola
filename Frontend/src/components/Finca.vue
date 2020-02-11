@@ -10,43 +10,39 @@
           Ingrese los datos solicitados para registrar una finca
         </p>
 
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">Nombre</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              v-model="objFinca.nombre"
-            />
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Nombre</span>
           </div>
+          <input type="text" class="form-control" v-model="objFinca.nombre" />
+        </div>
 
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">Dirección</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              v-model="objFinca.direccion"
-            />
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Dirección</span>
           </div>
+          <input
+            type="text"
+            class="form-control"
+            v-model="objFinca.direccion"
+          />
+        </div>
 
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">Tamaño</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Ej: 200 km"
-              v-model="objFinca.tamano"
-            />
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Tamaño</span>
           </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ej: 200 km"
+            v-model="objFinca.tamano"
+          />
+        </div>
 
-          <div class="input-group mb-3">
-            <mdb-btn color="primary" @click="guardar">Guardar</mdb-btn>
-          </div>
+        <div class="input-group mb-3">
+          <mdb-btn color="primary" @click="guardar">Guardar</mdb-btn>
+        </div>
       </div>
     </mdb-row>
   </section>
@@ -67,7 +63,7 @@ import {
   mdbBtn,
   mdbPagination,
   mdbPageNav,
-  mdbPageItem, 
+  mdbPageItem
 } from "mdbvue";
 
 import { Services, Notifications } from "../index";
@@ -98,12 +94,12 @@ export default {
   methods: {
     guardar() {
       Services.post("General/RegistrarFinca", this.objFinca)
-      .then(res => {
-        Notifications.success('Registro exitoso');
-      })
-      .catch(err => {
-        console.log(err);
-      })
+        .then(res => {
+          Notifications.success("Registro exitoso");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

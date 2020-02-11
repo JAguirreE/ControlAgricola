@@ -16,6 +16,7 @@ namespace ControlAgricola.Controllers
     private readonly DOLote dolote;
     private readonly DOActividades doactividades;
     private readonly DOGeneral dogeneral;
+    private readonly DOFacturacion dofactura;
 
     public GeneralController()
     {
@@ -23,6 +24,7 @@ namespace ControlAgricola.Controllers
       doactividades = new DOActividades();
       dolote = new DOLote();
       dogeneral = new DOGeneral();
+      dofactura = new DOFacturacion();
     }
 
     #region Finca
@@ -131,6 +133,72 @@ namespace ControlAgricola.Controllers
     }
 
 
+    #endregion
+
+    #region Facturación
+
+    [Route("RegistrarFactura")]
+    [HttpPost]
+    public LiquidacionDatos RegistrarFactura(FacturaDatos factura)
+    {
+      return dofactura.RegistrarFactura(factura);
+    }
+
+    [Route("RegistrarFacturaDetalle")]
+    [HttpPost]
+    public void RegistrarFacturaDetalle(FacturaDetalle detalle)
+    {
+      dofactura.RegistrarFacturaDetalle(detalle);
+    }
+
+    [Route("DeleteFactura")]
+    [HttpPost]
+    public void DeleteFactura(long idFactura)
+    {
+      dofactura.DeleteFactura(idFactura);
+    }
+
+    [Route("DeleteFacturaAll")]
+    [HttpPost]
+    public void DeleteFacturaAll(Factura factura)
+    {
+      dofactura.DeleteFacturaAll(factura.IdFac);
+    }
+
+    [Route("DeleteFacturaDetalle")]
+    [HttpPost]
+    public void DeleteFacturaDetalle(long idFacturaDetalle)
+    {
+      dofactura.DeleteFacturaDetalle(idFacturaDetalle);
+    }
+
+    [Route("GetFactura")]
+    [HttpGet]
+    public Factura GetFactura(long idFactura)
+    {
+      return dofactura.GetFactura(idFactura);
+    }
+
+    [Route("GetFacturas")]
+    [HttpGet]
+    public IEnumerable<Factura> GetFacturas()
+    {
+      return dofactura.GetFacturas();
+    }
+
+    [Route("GetFacturaDetalle")]
+    [HttpPost]
+    public void GetFacturaDetalle(long idFacturaDetalle)
+    {
+      dofactura.GetFacturaDetalle(idFacturaDetalle);
+    }
+
+    [Route("GetFacturaDetalleAll")]
+    [HttpGet]
+    public IEnumerable<FacturaDetalle> GetFacturaDetalleAll(long idFactura)
+    {
+      return dofactura.GetFacturaDetalleAll(idFactura);
+    }
     #endregion
 
   }

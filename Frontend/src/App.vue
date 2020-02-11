@@ -61,6 +61,16 @@
             />Configuración</mdb-list-group-item
           >
         </router-link>
+        <router-link to="/facturacion" @click.native="activeItem = 6">
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 6 && 'active'"
+            ><mdb-icon
+              icon="file-invoice-dollar"
+              class="mr-3"
+            />Facturacion</mdb-list-group-item
+          >
+        </router-link>
       </mdb-list-group>
     </div>
     <!-- /Sidebar  -->
