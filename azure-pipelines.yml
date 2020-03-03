@@ -17,6 +17,7 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Publish'
   inputs:
     command: publish
     publishWebProjects: True
@@ -24,6 +25,7 @@ steps:
     zipAfterPublish: True
 
 - task: PublishBuildArtifacts@1
+  displayName: 'Drop'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'myWebsiteName'
